@@ -12,22 +12,22 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   signIn(userLogin: any) {
-  return this.http.post<any>(`${this.apiRest}`, userLogin)
-  .pipe(map(res => res));
+    return this.http.post<any>(`${this.apiRest}`, userLogin)
+    .pipe(map(res => res));
   }
 
   setToken(token: string) {
-  // this.cookies.set("token", token);
-  sessionStorage.setItem('token', token);
+    // this.cookies.set("token", token);
+    sessionStorage.setItem('token', token);
   }
 
   getToken() {
-  // return this.cookies.get("token");
-  return sessionStorage.getItem('token');
+    // return this.cookies.get("token");
+    return sessionStorage.getItem('token');
   }
 
   getUser() {
-  return this.http.get<any>(`${this.apiRest}/me`)
-  .pipe(map(res => res));
+    return this.http.get<any>(`${this.apiRest}/me`)
+    .pipe(map(res => res));
   }
 }

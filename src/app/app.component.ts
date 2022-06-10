@@ -6,16 +6,24 @@ import { UserService } from "./services/user.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
   title = 'toDoApp para SD';
-  email: string = 'test';
-  password: string = 'test';
+
+  email: string = 'ef322@alu.ua.es';
+  password: string = '2235';
+
+  displayName = 'Sebas';
+  
   constructor(public userService: UserService) {}
   ngOnInit() {
     this.login();
+    this.userService.getUser().subscribe(
+      user => {this.displayName = user.nombre});
   }  
+
   login() {
-    const user = { email: this.email, pass: this.password };
+    const user = { email: this.email, password: this.password };
     this.userService.signIn(user).subscribe(
       (loggedUser) => {
         this.userService.setToken(loggedUser.token);

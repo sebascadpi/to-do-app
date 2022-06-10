@@ -12,16 +12,16 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor() {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Obtenemos el token del session storage
     const token = sessionStorage.getItem('token');
 
-    var request = request;
+    var request = req;
     // Validamos si el token existe
 
     if(token){
       // Clonamos el token y lo inyectamos en la cabecera de todas la peticiones HTTP
-      request = request.clone({
+      request = req.clone({
         setHeaders: {
           authorization: `Bearer ${token}`
         }
