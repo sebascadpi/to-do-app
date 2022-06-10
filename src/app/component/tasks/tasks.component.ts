@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../Task';
 
@@ -12,7 +13,7 @@ import { Task } from '../../Task';
 
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
-  titulo: string = '';
+  title: string = '';
 
 
   constructor(private taskService: TaskService) {
@@ -28,14 +29,14 @@ export class TasksComponent implements OnInit {
   addTask(event: any) {
     event.preventDefault();
     const newTask:Task = {
-      title: this.titulo,
+      title: this.title,
       isDone: false
     };
 
     this.taskService.addTask(newTask)
       .subscribe(task => {
         this.tasks.push(task);
-        this.titulo = '';
+        this.title = '';
       });
   }
 
